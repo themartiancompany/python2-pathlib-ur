@@ -1,4 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0
+#
 # Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
+# Maintainer:  Truocolo <truocolo@aol.com>
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 # Contributor : vae77 <fernandogrd@yahoo.com.br>
 
@@ -7,12 +10,18 @@ _pkg=pathlib
 pkgname="${_py}-${_pkg}"
 pkgver=1.0.1
 pkgrel=5
-_pkgdesc=("This module offers a set of classes featuring all the common "
-          "operations on paths in an easy, object-oriented way")
+_pkgdesc=(
+  "This module offers a set of classes featuring all the common "
+  "operations on paths in an easy, object-oriented way"
+)
 pkgdesc="${_pkgdesc[*]}"
-arch=('any')
+arch=(
+  'any'
+)
 url="https://${_pkg}.readthedocs.org/en/${pkgver}/"
-license=('MIT')
+license=(
+  'MIT'
+)
 depends=(
   "${_py}"
 )
@@ -27,9 +36,17 @@ sha512sums=(
 )
 
 package() {
-  cd "${srcdir}/${_pkg}-${pkgver}"
-  "${_py}" setup.py install --root="${pkgdir}" \
-                            --optimize=1
-  install -Dm644 LICENSE.txt \
-          "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.txt"
+  cd "\
+    ${srcdir}/${_pkg}-${pkgver}"
+  "${_py}" \
+    setup.py \
+      install \
+        --root="${pkgdir}" \
+        --optimize=1
+  install \
+    -Dm644 \
+    LICENSE.txt \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.txt"
 }
+
+# vim:set sw=2 sts=-1 et:
